@@ -1,17 +1,65 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <title>Data Lovers</title>
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+    <title>Rick & Morty Universe</title>
     <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet">
   </head>
   <body>
-    <div id="root"></div>
-    <!-- <script src="./data/injuries/injuries.js"></script> -->
-    <!-- <script src="./data/pokemon/pokemon.js"></script> -->
-    <!-- <script src="./data/steam/steam.js"></script> -->
-    <!-- <script src="./data/worldbank/worldbank.js"></script> -->
-    <!-- <script src="./data/lol/lol.js"></script> -->
+        
+        <header class="header">
+          <figure class="logo" alt="logo">
+              <img src="imagenes/Rick_and_Morty_logo.png" alt="imglog" class="imglogo">
+          </figure>
+        </header>
+        <!-- MAIN -->
+        <main>
+
+          <section class="initmain">
+               <section class="welcome">
+                <img src="imagenes/hey.png" alt="quote" class="imgpresentation">
+                <p>"El universo es como un animal, se alimenta de lo anodino. Crea infinitos idiotas para luego comérselos"</p>
+              </section>
+          </section>
+
+          <section class="searching">
+              <section class="separate">
+                <img src="imagenes/giphy.gif" alp="portal" class="portal">
+                <p>PERSONAJES</p>
+              </section>
+          </section>
+
+          <section class="character">
+                <input class="inputsearch" type="search" id="searchForm" placeholder="" aria-label="search">
+                <button class="buttonSearch" id="button">Buscar</button>
+                <ul class="autocomplete-result-list"></ul>
+                <select name="order" id="order" class="select1">
+                  <option value="order" class="order"><span>Ordenar</span></option>
+                  <option value="a-z">de la A a la Z</option>
+                  <option value="z-a">de la Z a la A</option>
+                </select>
+          </section>
+          <section id="cards-data" class="cards">
+            
+            </section>
+        </main>
+        <footer>
+          <section class="end">
+            <p>Hecho por Adriana</p>
+          </section>
+        </footer>        
+                
+
+            
+      
+
+ 
+            
+            
+
+
+    <script src="./data/rickandmorty/rickandmorty.js"></script>
     <script src="data.js"></script>
     <script src="main.js"></script>
   </body>

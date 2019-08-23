@@ -391,8 +391,8 @@ Cuando ya estés lista para codear, te sugerimos empezar de esta manera:
 
 ## Checklist
 
-- [ ] Usa VanillaJS.
-- [ ] No hace uso de `this`.
+- [x ] Usa VanillaJS.
+- [ x] No hace uso de `this`.
 - [ ] Pasa linter (`npm pretest`)
 - [ ] Pasa tests (`npm test`)
 - [ ] Pruebas unitarias cubren un mínimo del 70% de statements, functions y
