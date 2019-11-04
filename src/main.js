@@ -1,97 +1,100 @@
+let characters;
+const root = document.getElementById("root");
+root.addEventListener("click", getClick);
+const path = "https://rickandmortyapi.com/api/character/";
 
-const filterAz = document.getElementById('order'); //Filter options button
-const spaceCards = document.getElementById('cards-data'); //Section where data is going to appear
-const urlData = "./data/rickandmorty/rickandmorty.json";
-let newDataApi = '';
-const searching = document.querySelector('#searchForm');
-const buttonS = document.querySelector('#button');
-let data = []
+function changeContent(data) {
+  root.innerHTML = data;
+}
 
-// Filtrar
-const filter = (text, data) =>{
-  // console.log(searching.value); 
-  for(let objectResult of data) {
-    let nameChar = objectResult.name.toLowerCase();
-    console.log((nameChar.indexOf(text)));
-    
-    if(nameChar.indexOf(text) > -1){
-      return (objectResult)
+function addContent(data) {
+  root.innerHTML +=  data;
+}
 
-    }
+function clearContent(){
+  root.innerHTML ="";
+}
+
+function getClick(event) {
+  let card = event.path.filter((Me) => event.className == "card");
+
+     if(!!card[0]) {
+       let character = characters.results.filter(
+         (character) => character.id == card[0].id)
+       generateDetail(character[0]);
+     }
+     if (event.target.id == "backTo"){
+       clearContent();
+       generateCards(characters);
+     }
+     if(event.target.id == "prev" && !!characters.info.prev){
+       getCharacters(characters.info.prev);
+     }
+     if(event.target.id == "next" && !!characters.info.next){
+       clearContent();
+       getCharacters(characters.info.next);
+     }
+     if(event.target.id.includes("?page=")){
+       clearContent();
+       getCharacters(path.concat(event.target.id));
+     }
+}
+
+
+
+async function getCharacters(path){
+  let rawCharacters = await fetch(path);
+  characters = await rawCharacters.json();
+  generateCards(characters);
+}
+
+
+function generateCards(data){
+  data.results.map(d => {
+    const {image, name, gender, status, id, origin, location, species} =d;
+    let card = `
+    <div class="card">
+    <div class='front'>
+    <div class="data-front" id="${id}">
+                     <h1  class="emboss">${name}</h1>
+                     <img src="${image}" alt="" class="card-img"></div>  
+                  <div class="back">
+                     <h1  class="emboss">${name}</h1>
+                     <p>Genero: ${gender}</p>
+                     <p>Status: ${status}</p>
+                     <p>Origen: ${origin.name}</p>
+                     <p>Ubicación: ${location.name}</p>
+                     <p>Especie: ${species}</p>
+                     <but
+                     <a id="backTo">Regresar</a>               
+                   </div></div>
+    </div>`; 
+                addContent(card);
+  });
+  generatePagination(data);
+}
+
+
+function generatePagination(data) {
+  let currentPath = data.info.prev;
+  let numbers = "";
+  let prev = `<div class="btn-btn"><a class="btn" id="prev">Previous</a></div>`;
+  let next = `<div class="btn-btn"><a class="btn" id="next">Next</a></div>`;
+  let current = !!currentPath ? currentPath.indexOf("=") !== -1 ? Number(currentPath.slice(currentPath.indexOf("=") +1,
+          currentPath.length)) +1 : null :1;
+  for (let index = 1; index <= data.info.pages; index++) {
+    numbers +=
+       index === current
+       ? `
+       <span class="number-current" id="?page=${index}">${index}</span>`
+       : `<span class="number" id="?page=${index}">${index}</span>
+       `;
   }
-  
+
+  addContent(
+    `<div id="pagination"> ${prev} 
+    <div id="numbers">${numbers}
+    </div> ${next} </div>`,);
 }
-
-buttonS.addEventListener('click', () =>{
-  const text = searching.value.toLowerCase()
-  console.log(filter(text, data))
-} );
-
-
-
-
-// Traer data del archivo json
-const getData = async(url) => {
-  const request = await fetch(url);
-  return await request.json();
-};
-
-// Inicializando 
-const main = async() => {
-  fullData = await getData(urlData);
-  showData(fullData.results);
-  console.log(fullData.results)
-  data = fullData.results
-
-filterAz.addEventListener('change', () => { 
-  const sortOrder= event.target.value;
-  //console.log(sortOrder);
-  const result = window.sortData(fullData.results, sortOrder)
-  //console.log(result);
-  showData(result)
-})
-}
-
-
-// Mostrar data
-const template = (character) => {
-  return ` <div class="card ${character.species} ${origin}">
-  <div class="face">
-  <div class="name">
-  <p> ${character.name}</p></div>
-  <br>  
-  <div class="img"> 
-  <img src="${character.image}"></img>
-  </div>
-<div class="info">
-  <p> Status: ${character.status} </p>
-  <p> Especie: ${character.species} </p>
-  <p> tamaño: ${character.origin.name} </p>
-  <p> Origen: ${character.location.name}</p>
-  </div>
-  </div>
-  </div>
-  ` 
-}
-
-const showData = data => {
-  let str = '';
-  console.log(data);
-  data.forEach(element => str += template(element));
-  spaceCards.innerHTML = str;
-}
-
-
-const allCards = document.getElementsByClassName('card');
-
-
-
-
-window.addEventListener('load', main);
-
-
-
-
-
-
+getCharacters(path);
 

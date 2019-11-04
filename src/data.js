@@ -28,3 +28,13 @@ const sortData = (data, sortOrder) =>{
 
 
 window.sortData = sortData;
+
+// const filterAz = document.getElementById('order'); //Filter options button
+// const spaceCards = document.getElementById('cards-data'); //Section where data is going to appear
+// const urlData = "./data/rickandmorty/rickandmorty.json";
+// let newDataApi = '';
+// const searching = document.querySelector('#searchForm');
+// const buttonS = document.querySelector('#button');
+// let data = []
+
+// Traer data, paginación
