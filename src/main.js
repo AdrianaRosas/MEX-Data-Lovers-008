@@ -3,6 +3,7 @@ const root = document.getElementById("root");
 root.addEventListener("click", getClick);
 const path = "https://rickandmortyapi.com/api/character/";
 
+
 function changeContent(data) {
   root.innerHTML = data;
 }
@@ -40,18 +41,24 @@ function getClick(event) {
      }
 }
 
-
+// var req = new XMLHttpRequest();
+// req.open('GET', 'http://www.mozilla.org/', false); 
+// req.send(null);
+// if (req.status == 200)
+//   dump(req.responseText);
 
 async function getCharacters(path){
   let rawCharacters = await fetch(path);
   characters = await rawCharacters.json();
   generateCards(characters);
+  return characters;
 }
 
+let personajes= getCharacters(path);
 
 function generateCards(data){
-  data.results.map(d => {
-    const {image, name, gender, status, id, origin, location, species} =d;
+  data.results.map(d=> {
+    const {image, name, gender, status, id, origin, location}=d ;
     let card = `
     <div class="card">
     <div class='front'>
@@ -64,7 +71,6 @@ function generateCards(data){
                      <p>Status: ${status}</p>
                      <p>Origen: ${origin.name}</p>
                      <p>Ubicación: ${location.name}</p>
-                     <p>Especie: ${species}</p>
                      <but
                      <a id="backTo">Regresar</a>               
                    </div></div>
@@ -98,3 +104,92 @@ function generatePagination(data) {
 }
 getCharacters(path);
 
+
+// 
+
+const formulario = document.querySelector('#searchForm');
+const boton = document.querySelector('#boton');
+
+function filtrar (data){
+  root.innerHTML= '';
+  // console.log(data)
+  data.map(e=>{
+    const texto = formulario.value.toLowerCase();
+    console.log(path);
+    for(let nombre of data.name){
+      let nameCharacter = data.name.toLowerCase();
+      if(nameCharacter.indexOf(texto) !== -1){
+        root.innerHTML += `
+        <div class="card">
+        <div class='front'>
+        <div class="data-front" id="${id}">
+                         <h1  class="emboss">${name}</h1>
+                         <img src="${image}" alt="" class="card-img"></div>  
+                      <div class="back">
+                         <h1  class="emboss">${name}</h1>
+                         <p>Genero: ${gender}</p>
+                         <p>Status: ${status}</p>
+                         <p>Origen: ${origin.name}</p>
+                         <p>Ubicación: ${location.name}</p>
+                         <but
+                         <a id="backTo">Regresar</a>               
+                       </div></div>
+        </div>`
+      }
+    }
+    if(root.innerHTML === ''){
+      root.innerHTML += `
+      <h1>Result not found</h1>
+      `
+    }
+  
+  })
+
+}
+
+boton.addEventListener('click', filtrar)
+formulario.addEventListener('keyup', filtrar)
+console.log(personajes);
+filtrar(personajes.results);
+
+
+
+// const filtrar = () => {
+//   resultado.innerHTML= '';
+//   // console.log(resultado.value);
+//   const texto = formulario.value.toLowerCase();
+
+//   for(let producto of path.results){
+//     let nombre = producto.name.toLowerCase();
+//     if(nombre.indexOf(texto) !== -1){
+//       resultado.innerHTML += `
+//       <div class="card">
+//       <div class='front'>
+//       <div class="data-front" id="${id}">
+//                        <h1  class="emboss">${name}</h1>
+//                        <img src="${image}" alt="" class="card-img"></div>  
+//                     <div class="back">
+//                        <h1  class="emboss">${name}</h1>
+//                        <p>Genero: ${gender}</p>
+//                        <p>Status: ${status}</p>
+//                        <p>Origen: ${origin.name}</p>
+//                        <p>Ubicación: ${location.name}</p>
+//                        <but
+//                        <a id="backTo">Regresar</a>               
+//                      </div></div>
+//       </div>`
+//     }
+//   }
+
+//   if(resultado.innerHTML === ''){
+//     resultado.innerHTML += `
+//     <h1>Result not found</h1>
+//     `
+//   }
+// }
+
+// boton.addEventListener('click', filtrar)
+// formulario.addEventListener('keyup', filtrar)
+
+// filtrar();
+// ;
