@@ -17,7 +17,6 @@
           </figure>
         </header>
         <!-- MAIN -->
-
           <section class="initmain">
                <section class="welcome">
                 <img src="imagenes/hey.png" alt="quote" class="imgpresentation">
@@ -35,43 +34,35 @@
                 <p>PERSONAJES</p>
               </section>
           </section>
-
-          <section class="character">
-                <div class="btn-search">
-                   <div class="input-search">
-                       <input class="inputsearch" type="search" id="searchForm" placeholder="Buscar" aria-label="search">
-                       <button id="boton" class="buttonSearch">Buscar</button>
-                   </div>
-                   <div class="filter">
-                     <select name="order" id="order"  class="select1">
-                        <option value="order" class="order-txt"><span>Ordenar</span></option>
-                        <option value="order-az">de la A a la Z</option>
-                        <option value="order-za">de la Z a la A</option>
-                     </select>
-                   </div>  
-                  </div>
-                    
-          </section>
-          
-          <section id="root" class="cards">
-            
+           <!--PANTALLA DE PERSONAJES-->
+    <section id="character" class="separate">
+      <div class="btn-search" id="inputs-pantalla-personajes">
+        <div class="select1">
+          <select id="input-filter-personajes">
+            <option value="filter">Filtrar</option>
+            <option value="all">Todos</option>
+            <option value="status.Alive">Vivos</option>
+            <option value="status.Dead">Muertos</option>
+            <option value="gender.Male">Masculinos</option>
+            <option value="gender.Female">Femeninos</option>
+          </select>
+        </div>
+        <div class="select1">
+          <select id="input-sort-personajes">
+            <option value="all">Ordenar</option>
+            <option value="sortAZ">Ordenar A-Z</option>
+            <option value="sortZA">Ordenar Z-A</option>
+          </select>
+        </div>
+      </div>
+      <div class="btn-search">
+        <div class="card-display">
+          <div id="card-display"></div>
+        </div>
+      </div>
+    </section>
+          <section id="root" class="cards">       
             </section>
-            
-        <!-- <footer>
-          <section class="end">
-            <p>Hecho por Adriana</p>
-          </section>
-        </footer>         -->
-                
-
-            
-      
-
- 
-            
-            
-
-
     <script src="./data/rickandmorty/rickandmorty.js"></script>
     <script src="data.js"></script>
     <script src="main.js"></script>

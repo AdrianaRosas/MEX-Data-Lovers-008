@@ -112,7 +112,13 @@ button:hover {
     width: 100%;
     height: 4rem;
     background-color: #0d021e;
-   
+}
+.btn-search{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    /* background-color: #ff0081; */
 }
 .portal {
     width: 15%;
@@ -139,27 +145,12 @@ button:hover {
 
 }
 
-.btn-search, .filter{ 
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: center;
-    width: 90%;
-    height: 4rem;
-  
-    /* background-color: turquoise; */
-}
-
-.btn-search{
-    margin: 2rem 0 0 0;
-}
-
-.inputsearch, .select1 {
+#input-filter-personajes, #input-sort-personajes{
   display: flex;
   /* align-items: flex-start; */
   justify-content: center;  
   background: transparent;
-  width: 90%;
+  width: 8rem;
   height: 2rem;
   color: #fff;
   border: 1px solid whitesmoke;
@@ -170,36 +161,16 @@ button:hover {
   text-align: center;
   margin: 0 0.5rem 0 0.5rem;
 }
-  .inputsearch :hover {
+#input-filter-personajes, #input-sort-personajes:hover {
     box-shadow: 0 0 20px rgba(210, 204, 21, 0.9) 0px 1px 3px inset;
   }
-
-  .btn-cont{
-      width: 100%;
-      margin: 0 0 2rem 0;
-  }
-
-  .buttonSearch{
-      margin: 0.5rem 0 0 0.5rem;
-      background-color: #9BC56A;
-      font-family: 'Cairo', sans-serif;
-      font-size: 0.7rem;
-      font-weight: 10px;
-      color: #4E4769;
-      width: 3.5rem;
-      height: 1.5rem;
-      display: flex;
-      justify-content: center;
-  }
-
 
   option {
     font-family: 'Cairo', sans-serif;
     font-size: 1.2rem;
    color: black;
   }
-
-  
+ 
   #root{
       width: 100%;
       max-width: 1000px;
@@ -428,42 +399,38 @@ button {
 
     
    /* SEPARATE */
-
-   .character {
-    justify-content: flex-start;
+.btn-search{
+    display: flex;
+    flex-direction: row;
     align-items: center;
-    width: 90%;
-    height: 6rem;
+    justify-content: center;
+    /* background-color: #ff0081; */
 }
 
-   .btn-search, .filter{ 
-    align-items: flex-start;
-    width: 80%;
-    height: 2rem;
-   }
+/* CHARACTER */
+.character {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 5rem;
+    background-color: #4E4769;
 
-.inputsearch, .select1 {
-  width: 90%;
-  height: 2rem;
 }
-.screen-two{
-    background-color:  #4E4769;
-    block-size: auto;
-}   
-    .separate {
-    height: 6rem;
-    background-color: #0d021e;  
-}
-.separate p {
-    font-size: 2rem;
+
+#input-filter-personajes, #input-sort-personajes{
+  width: 20rem;
+  height: 3rem;
+  margin: 0 2rem 0 2rem;
 }
 
 /* CARDS */
 
 #root{
-    height:auto;
-    flex-direction: column;
-    /* background-color: chocolate; */
+    height: auto;
+    flex-direction: row;
+    background-color: chocolate;
   }
   
   /* CARDS */
@@ -518,7 +485,34 @@ button {
 
 }  
 
-    
+#cards {
+    display: flex;
+    background-color: whitesmoke;
+    border-radius: 1rem;
+    color: black;
+    font-size: 1rem;
+    padding: 1rem 0;
+    align-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin: 1.5rem 0;
+    height: 18rem;
+    width: 15rem;
+    text-align: center;
+}
+
+#card-display {
+    justify-content: center;
+}
+
+
+.imagen-personaje {
+    display: flex;
+    width: 70%;
+    margin: 0 auto;
+}
+
+
 
 
 

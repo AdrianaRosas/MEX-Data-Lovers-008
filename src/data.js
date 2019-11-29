@@ -1,52 +1,4 @@
-// let selector = document.getElementById('order');
-// selector.addEventListener("click", sortData());
-
-
-
-// // Ordenando el arreglo oselectionBtenido
-// sortData = (data, sortOrder) =>{
-//   return data.sort((a, b) => {
-//     let selectionA = a.name.toUpperCase();
-//     let selectionB = b.name.toUpperCase();
-//     if (sortOrder === 'a-z'){
-//       if (selectionA < selectionB){
-//         return -1;
-//       }else if(selectionA > selectionB){
-//         return 1;
-//       }else {
-//         return 0;           
-//       }
-//     }else{
-//       if (selectionA > selectionB){
-//         return -1;
-//       }else if(selectionA < selectionB){
-//         return 1;
-//       }else {
-//         return 0;           
-//       }
-//     }
-//   });
-//   // return 
-// }
-
-
-
-// window.sortData = sortData;
-
-// const filterAz = document.getElementById('order');
-// filterAz.addEventListener("click", function(){
-//     let options = filterAz.querySelectorAll("order-az");
-//     let filterAtoZ = options.length;
-//     if(typeof(filterAtoZ)==="undefined" || filterAtoZ < 2)
-//     {
-        
-//     }
-// })
-
-
-// console.log(filterAz);
-
-
+// Generador de frases aletorias
 let quotes = [
     "'Nadie existe a propósito. Nadie pertenece a ninguna parte. Todos vamos a morir. Ven a ver la televisión'",
     "'Científicamente hablando, las tradiciones son estúpidas'",
@@ -77,3 +29,51 @@ let quotes = [
     const tweetUrl = ' https://twitter.com/intent/tweet?text=' + encodeURIComponent(generatedQuote);
      window.open(tweetUrl);
   });  
+
+  // ----------------------------------------------------------------------------------------
+
+  //Función de filtrado
+const filterData = (data, key, value) => {
+  let filterResult = data.filter(element => element[key] === value);    
+  console.log(key);
+  console.log(value);
+  console.log(filterResult);
+  return filterResult;
+};
+
+//Funciones select
+const sortDataAZ = (data) => {
+  data.sort((a,b) => {
+    let nameA = a.name.toUpperCase();
+    let nameB = b.name.toUpperCase();
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+    return 0;
+  });
+  return data;
+};
+
+const sortDataZA = (data) => {
+  data.sort((a,b) => {
+    let nameA = a.name.toUpperCase();
+    let nameB = b.name.toUpperCase();
+    if (nameA > nameB) {
+      return -1;
+    }
+    if (nameA < nameB) {
+      return 1;
+    }
+    return 0;
+  });
+  return data;
+};
+
+
+//Declara métodos globales
+window.filterData = filterData;
+window.sortDataZA = sortDataZA;
+window.sortDataAZ = sortDataAZ;
